@@ -1,0 +1,7 @@
+[project]
+name = "blackjack"
+version = "0.1.0"
+description = "CLI Blackjack game in Python"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
