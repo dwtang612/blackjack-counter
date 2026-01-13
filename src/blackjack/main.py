@@ -18,7 +18,7 @@ def main() -> None:
     """
     print("Backjack Starting...")
     play_game()
-    print("Goodbye.")
+    print("Game Complete.")
 
 if __name__ == "__main__":
     main()
