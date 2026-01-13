@@ -1,5 +1,7 @@
 # BlackJack-Counter
 
+    to run this - ls into src directory and python -m blackjack.main
+
     Rules:
     • Dealer hits on 16, stands on 17 (choose soft-17 rule now)
     • Blackjack detection yes/no (choose now)
