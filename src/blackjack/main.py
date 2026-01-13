@@ -9,7 +9,7 @@ Responsible for:
 
 def play_game() -> None:
     """Run a single Blackjack game session."""
-    print("Playing one game of Blackjack (stub)")
+    print("Playing one game of Blackjack ['♠', '♥', '♦', '♣']")
 
 def main() -> None:
     """
