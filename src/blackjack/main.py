@@ -1,5 +1,6 @@
 from blackjack.cards import create_deck, deal_card, shuffle_deck
 from blackjack import ui, turns
+import blackjack.scoring as scoring
 """
 Program entry point and high-level orchestration for the Blackjack CLI game.
 
@@ -44,16 +45,31 @@ def main() -> None:
     """
     print("Backjack Starting... \n")
     # play_game()
+    
     deck = create_deck()
     shuffle_deck(deck)
+    
     player_hand = [deal_card(deck), deal_card(deck)]
+    dealer_hand = [deal_card(deck), deal_card(deck)]
 
-    result = turns.player_turn(deck, player_hand, ui)
+    # Show initial state (Dealer hand hidden)
+    ui.show_hand("Player", player_hand)
+    ui.show_hand_value("Player", player_hand, scoring)
+    ui.show_hand("Dealer", dealer_hand, hide_first=True)
 
-    if result["bust"]:
-        print("\nPlayer Busts")
+    player_result = turns.player_turn(deck, player_hand, ui)
+
+    if player_result["bust"]:
+        print("\nPlayer busts.")
+        return
+
+    # Dealer plays only if player didn't bust
+    dealer_result = turns.dealer_turn(deck, dealer_hand, ui)
+
+    if dealer_result["bust"]:
+        print("\nDealer busts. (Outcome resolution comes in Sprint 5)")
     else:
-        print("\n\nPlayer Stands")
+        print("\nDealer stands. (Outcome resolution comes in Sprint 5)")
     print("Game Complete.")
 
 
