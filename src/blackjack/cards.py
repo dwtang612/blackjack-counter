@@ -18,13 +18,13 @@ class Card:
         # Developer-friendly representation for debugging
         return f"Card(rank={self.rank}, suit={self.suit})"
     
-def create_deck():
-    """Create and return a standard 52-card deck."""
+def create_deck(num_decks: int = 2):
+    """Create and return a shoe of num_decks standard 52-card decks."""
     deck = []
-    
-    for rank in RANKS:
-        for suit in SUITS:
-            deck.append(Card(rank, suit))
+    for _ in range(num_decks):
+        for rank in RANKS:
+            for suit in SUITS:
+                deck.append(Card(rank, suit))
     return deck
     
 def shuffle_deck(deck):
