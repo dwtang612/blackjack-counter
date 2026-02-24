@@ -5,6 +5,8 @@ import blackjack.scoring as scoring
 def main() -> None:
     print("Blackjack Starting... \n")
 
+    stats = {"wins": 0, "losses": 0, "pushes": 0}
+    
     while True:
         print("\n" + "#" * 40)
         deck = create_deck()
@@ -21,8 +23,10 @@ def main() -> None:
         if scoring.hand_value(player_hand) == 21:
             if scoring.hand_value(dealer_hand) == 21:
                 print("\nBoth have Blackjack! Push.")
+                stats["pushes"] += 1
             else:
                 print("\nBlackjack! Player wins!")
+                stats["wins"] += 1
             print("\nGame Complete.")
             if not ui.prompt_play_again():
                 break
@@ -32,11 +36,13 @@ def main() -> None:
 
         if player_result["bust"]:
             print("\nPlayer busts. Dealer wins!")
+            stats["losses"] += 1
         else:
             dealer_result = turns.dealer_turn(deck, dealer_hand, ui)
 
             if dealer_result["bust"]:
                 print("\nDealer busts. Player wins!")
+                stats["wins"] += 1
             else:
                 outcome = scoring.determine_outcome(
                     scoring.hand_value(player_hand),
@@ -44,16 +50,20 @@ def main() -> None:
                 )
                 if outcome == "win":
                     print("\nPlayer wins!")
+                    stats["wins"] += 1
                 elif outcome == "lose":
                     print("\nDealer wins!")
+                    stats["losses"] += 1
                 else:
                     print("\nPush! It's a tie.")
+                    stats["pushes"] += 1
 
         print("\nGame Complete.")
 
         if not ui.prompt_play_again():
             break
 
+    ui.show_stats(stats)
     print("\nThanks for playing!")
 
 

@@ -200,12 +200,12 @@ Should NOT:
 - **Empty deck** — `deal_card()` raises a `ValueError` if the deck runs out of cards.
 - **Invalid hit/stand input** — Only `h`, `hit`, `s`, `stand` accepted; re-prompts on anything else.
 - **Invalid play again input** — Only `y`, `yes`, `n`, `no` accepted; re-prompts on anything else.
+- **Natural blackjack** — If the player's opening two cards total 21, they win immediately without playing a turn.
+- **Simultaneous blackjack** — If both player and dealer open with 21, it resolves as a push.
+- **Statistics tracking** — Wins, losses, and pushes are tracked across rounds and displayed at end of session.
 
 ### Not Yet Handled
-- **Natural blackjack** — A two-card 21 is not treated differently from a regular 21 (planned for a later sprint per game rules).
-- **Simultaneous blackjack** — If both player and dealer open with 21, it resolves as a push without a special message.
 - **Deck exhaustion in long sessions** — A fresh deck is created each round, so running out mid-hand is not possible currently, but multi-deck support is not implemented.
-- **Statistics tracking** — Wins, losses, and pushes are not tracked across rounds yet (Sprint 6).
 - **Double down / split** — Not in scope for v1.
 
 ---

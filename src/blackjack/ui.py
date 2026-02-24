@@ -41,3 +41,11 @@ def show_hand_value(owner, hand, scoring):
         print(f"Your total: {value}")
     else:
         print(f"{owner}'s total: {value}")
+
+def show_stats(stats):
+    total = stats["wins"] + stats["losses"] + stats["pushes"]
+    print("\n--- Session Stats ---")
+    print(f"Rounds played: {total}")
+    print(f"Wins:          {stats['wins']}")
+    print(f"Losses:        {stats['losses']}")
+    print(f"Pushes:        {stats['pushes']}")
