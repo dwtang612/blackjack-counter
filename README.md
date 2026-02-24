@@ -189,6 +189,27 @@ Should NOT:
 
 ---
 
+## Edge Cases
+
+### Handled
+- **Ace logic** — Aces count as 11, but automatically drop to 1 if the hand would bust. Multiple aces are supported (e.g. A + A = 12, not 22).
+- **Player bust** — Detected immediately after each hit; dealer turn is skipped.
+- **Dealer bust** — Detected after each dealer hit; player wins automatically.
+- **Push/tie** — Both hands equal; correctly resolved as a draw.
+- **Dealer stands on soft 17** — Dealer hits on ≤16 and stands on ≥17, including soft hands.
+- **Empty deck** — `deal_card()` raises a `ValueError` if the deck runs out of cards.
+- **Invalid hit/stand input** — Only `h`, `hit`, `s`, `stand` accepted; re-prompts on anything else.
+- **Invalid play again input** — Only `y`, `yes`, `n`, `no` accepted; re-prompts on anything else.
+
+### Not Yet Handled
+- **Natural blackjack** — A two-card 21 is not treated differently from a regular 21 (planned for a later sprint per game rules).
+- **Simultaneous blackjack** — If both player and dealer open with 21, it resolves as a push without a special message.
+- **Deck exhaustion in long sessions** — A fresh deck is created each round, so running out mid-hand is not possible currently, but multi-deck support is not implemented.
+- **Statistics tracking** — Wins, losses, and pushes are not tracked across rounds yet (Sprint 6).
+- **Double down / split** — Not in scope for v1.
+
+---
+
 ## Development Roadmap
 
 - Sprint 0: Setup and rules definition
