@@ -40,6 +40,18 @@ def hand_value(hand: List[Card]) -> int:
         ace_count -= 1
     return total
 
+def determine_outcome(player_value: int, dealer_value: int) -> str:
+    """
+    Determine the outcome of a Blackjack game based on hand values.
+    Returns 'win', 'lose', or 'push'.
+    """
+    if player_value > dealer_value:
+        return 'win'
+    elif player_value < dealer_value:
+        return 'lose'
+    else:
+        return 'push'
+
 def is_bust(hand) -> bool:
     """
     Returns True of the hand value exceeds 21
