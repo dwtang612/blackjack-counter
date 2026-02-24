@@ -57,3 +57,9 @@ def is_bust(hand) -> bool:
     Returns True of the hand value exceeds 21
     """
     return hand_value(hand) > 21
+
+def is_natural_blackjack(hand: List[Card]) -> bool:
+    """
+    Returns True if the hand is a natural blackjack (exactly 2 cards totaling 21).
+    """
+    return len(hand) == 2 and hand_value(hand) == 21

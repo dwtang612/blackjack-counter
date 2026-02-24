@@ -20,13 +20,20 @@ def main() -> None:
             ui.show_hand_value("Player", player_hand, scoring)
 
             # Check for natural blackjack
-            if scoring.hand_value(player_hand) == 21:
-                if scoring.hand_value(dealer_hand) == 21:
+            player_natural = scoring.is_natural_blackjack(player_hand)
+            dealer_natural = scoring.is_natural_blackjack(dealer_hand)
+
+            if player_natural or dealer_natural:
+                ui.show_hand("Dealer", dealer_hand, hide_first=False)
+                if player_natural and dealer_natural:
                     print("\nBoth have Blackjack! Push.")
                     stats["pushes"] += 1
-                else:
+                elif player_natural:
                     print("\nBlackjack! Player wins!")
                     stats["wins"] += 1
+                else:
+                    print("\nDealer has Blackjack! Dealer wins.")
+                    stats["losses"] += 1
                 print("\nGame Complete.")
                 if not ui.prompt_play_again():
                     break
